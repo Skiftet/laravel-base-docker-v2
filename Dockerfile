@@ -74,8 +74,7 @@ ONBUILD RUN curl -o composer.phar https://getcomposer.org/download/${COMPOSER_VE
     && php composer.phar install -d /srv/app --no-dev \
     && rm composer.phar \
     && rm -rf ~/.composer \
-    && chown -R www-data:www-data /srv/app
-
+    && chown -R www-data:www-data /srv/app /var/lib/nginx
 COPY run.sh /srv/run.sh
 RUN chmod +x /srv/run.sh
 COPY supervisord.conf /etc/supervisor/supervisord.conf
