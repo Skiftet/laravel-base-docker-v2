@@ -49,7 +49,8 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositor
     && rm -rf /var/cache/apk/*
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
+    && ln -sf /dev/stderr /var/log/nginx/error.log \
+		&& chown -R www-data:www-data /var/lib/nginx
 
 ENV NR_AGENT_VERSION 6.7.0.174
 ENV NR_INSTALL_SILENT 1
@@ -74,7 +75,7 @@ ONBUILD RUN curl -o composer.phar https://getcomposer.org/download/${COMPOSER_VE
     && php composer.phar install -d /srv/app --no-dev \
     && rm composer.phar \
     && rm -rf ~/.composer \
-    && chown -R www-data:www-data /srv/app /var/lib/nginx
+    && chown -R www-data:www-data /srv/app
 COPY run.sh /srv/run.sh
 RUN chmod +x /srv/run.sh
 COPY supervisord.conf /etc/supervisor/supervisord.conf
