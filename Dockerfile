@@ -1,4 +1,4 @@
-FROM php:fpm-alpine
+FROM php:7.1-fpm-alpine
 
 RUN { \
 	echo 'opcache.memory_consumption=128'; \
@@ -52,7 +52,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log \
 		&& chown -R www-data:www-data /var/lib/nginx
 
-ENV NR_AGENT_VERSION 6.7.0.174
+ENV NR_AGENT_VERSION 6.8.0.177
 ENV NR_INSTALL_SILENT 1
 ENV NR_INSTALL_PHPLIST /usr/local/bin
 RUN mkdir -p /srv \
