@@ -19,6 +19,7 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositor
         libpng-dev \
         icu-dev \
         tzdata \
+        tidyhtml-dev \
     && apk add --no-cache --virtual .required-deps \
         nginx \
         supervisor \
@@ -30,6 +31,7 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositor
         postgresql-libs \
         libpng \
         icu-libs \
+        tidyhtml-libs \
     && docker-php-ext-configure gd \
         --with-gd \
         --with-freetype-dir=/usr/include/ \
@@ -43,6 +45,7 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositor
         pdo_pgsql \
         intl \
         pdo_mysql \
+        tidy \
     && cp /usr/share/zoneinfo/$LOCAL_TIMEZONE /etc/localtime \
     && echo $LOCAL_TIMEZONE > /etc/timezone \
     && apk del .build-deps \
