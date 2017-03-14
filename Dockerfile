@@ -70,7 +70,8 @@ ENV COMPOSER_SHA1 f6cdb70fd2bdd3c2d92059116dfad56762c2fe24
 
 ONBUILD COPY app /srv/app
 ONBUILD RUN rm -rf /srv/app/storage \
-    && ln -s /srv/storage/main /srv/app/storage
+    && ln -s /srv/storage/main /srv/app/storage \
+    && mkdir -p /srv/app/storage/framework
 
 ONBUILD RUN curl -o composer.phar https://getcomposer.org/download/${COMPOSER_VERSION}/composer.phar \
     && echo "$COMPOSER_SHA1 *composer.phar" | sha1sum -c - \
