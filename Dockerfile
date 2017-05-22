@@ -68,7 +68,7 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_VERSION 1.1.2
 ENV COMPOSER_SHA1 f6cdb70fd2bdd3c2d92059116dfad56762c2fe24
 
-ONBUILD COPY app /srv/app
+ONBUILD COPY ./ /srv/app
 ONBUILD RUN rm -rf /srv/app/storage \
     && ln -s /srv/storage/main /srv/app/storage \
     && mkdir -p /srv/storage/main/framework/cache /srv/storage/main/framework/sessions /srv/storage/main/framework/views \
@@ -79,6 +79,7 @@ ONBUILD RUN rm -rf /srv/app/storage \
     && rm composer.phar \
     && rm -rf ~/.composer \
     && chown -R www-data:www-data /srv/app
+
 COPY run.sh /srv/run.sh
 RUN chmod +x /srv/run.sh
 COPY supervisord.conf /etc/supervisor/supervisord.conf
