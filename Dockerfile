@@ -46,6 +46,7 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositor
         intl \
         pdo_mysql \
         tidy \
+        pcntl \
     && cp /usr/share/zoneinfo/$LOCAL_TIMEZONE /etc/localtime \
     && echo $LOCAL_TIMEZONE > /etc/timezone \
     && apk del .build-deps \
